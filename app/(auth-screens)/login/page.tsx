@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -36,7 +38,9 @@ const LoginPage = () => {
 						type="password"
 					/>
 				</div>
-				<Button className="mt-4">Log In</Button>
+				<Button className="mt-4">
+					<Link href={'/'}>Log In</Link>
+				</Button>
 				<p className="text-center text-sm text-gray-600">
 					Don't have an account?{' '}
 					<Link className="text-blue-600 hover:underline" href="/register">

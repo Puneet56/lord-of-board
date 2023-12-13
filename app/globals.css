@@ -57,3 +57,25 @@
 		@apply bg-background text-foreground;
 	}
 }
+
+/* Firefox */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: #afafaf #000000;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: #afafaf;
+	border-radius: 10px;
+	border: 0px solid #000000;
+}
