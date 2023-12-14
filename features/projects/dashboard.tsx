@@ -107,7 +107,7 @@ const DashboardPage = ({ data }: { data: List[] }) => {
 			onDragStart={handleProjectDragStart}
 			sensors={sensors}
 		>
-			<div className="flex transform gap-8 overflow-auto px-16 py-4 transition-all">
+			<div className="flex gap-8 overflow-auto px-16 py-4 transition-all">
 				{listData.map(list => (
 					<ProjectList key={list.title} list={list} />
 				))}

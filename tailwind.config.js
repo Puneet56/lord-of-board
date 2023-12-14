@@ -7,6 +7,7 @@ module.exports = {
 		'./app/**/*.{ts,tsx}',
 		'./src/**/*.{ts,tsx}',
 		'./data/**/*.{ts,tsx}',
+		'./features/**/*.{ts,tsx}',
 	],
 	theme: {
 		container: {

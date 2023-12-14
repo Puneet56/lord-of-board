@@ -5,7 +5,16 @@ import TaskItem from '@/features/tasks/task-item';
 import { FolderKanban } from 'lucide-react';
 import Link from 'next/link';
 
+export async function generateStaticParams() {
+	return LISTDATA.flatMap(list => list.projects).map(project => ({
+		params: {
+			projectId: encodeURIComponent(project.title),
+		},
+	}));
+}
+
 const ProjectDetailsPage = ({ params }: { params: { projectId: string } }) => {
+	// fetching project details
 	const project = LISTDATA.flatMap(list => list.projects).find(
 		project => project.title === decodeURIComponent(params.projectId)
 	);

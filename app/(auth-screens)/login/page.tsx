@@ -3,10 +3,39 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import Link from 'next/link';
 
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from '@/components/ui/form';
+import { useForm } from 'react-hook-form';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+
+const loginSchema = z.object({
+	email: z.string().email(),
+	password: z.string().min(8),
+});
+
 const LoginPage = () => {
+	const form = useForm<z.infer<typeof loginSchema>>({
+		resolver: zodResolver(loginSchema),
+		defaultValues: {
+			email: '',
+			password: '',
+		},
+	});
+
+	const handleLogin = (data: z.infer<typeof loginSchema>) => {
+		console.log(data);
+	};
+
 	return (
 		<Card className="mx-auto w-full max-w-md">
 			<CardHeader className="text-center text-3xl font-bold">
@@ -15,33 +44,43 @@ const LoginPage = () => {
 
 			<p className="mb-6 text-center text-gray-600">Please login to continue</p>
 
-			<CardContent className="flex flex-col gap-y-4">
-				<div className="flex flex-col gap-y-2">
-					<Label className="font-medium" htmlFor="username">
-						Email
-					</Label>
-					<Input
-						id="email"
-						placeholder="master@scrum.com"
-						required
-						type="text"
-					/>
-				</div>
-				<div className="flex flex-col gap-y-2">
-					<Label className="font-medium" htmlFor="password">
-						Password
-					</Label>
-					<Input
-						id="password"
-						placeholder="••••••••"
-						required
-						type="password"
-					/>
-				</div>
-				<Button className="mt-4">
-					<Link href={'/'}>Log In</Link>
-				</Button>
-				<p className="text-center text-sm text-gray-600">
+			<CardContent>
+				<Form {...form}>
+					<form
+						className="flex flex-col gap-y-6"
+						onSubmit={form.handleSubmit(handleLogin)}
+					>
+						<FormField
+							control={form.control}
+							name="email"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Email</FormLabel>
+									<FormControl>
+										<Input placeholder="master@scrum.com" {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+
+						<FormField
+							control={form.control}
+							name="password"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Password</FormLabel>
+									<FormControl>
+										<Input type="password" placeholder="••••••••" {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						<Button type="submit">Login</Button>
+					</form>
+				</Form>
+				<p className="mt-6 text-center text-sm text-gray-600">
 					Don't have an account?{' '}
 					<Link className="text-blue-600 hover:underline" href="/register">
 						Sign up
