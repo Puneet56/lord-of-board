@@ -16,6 +16,7 @@ import {
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 import * as z from 'zod';
 
 const loginSchema = z.object({
@@ -24,6 +25,8 @@ const loginSchema = z.object({
 });
 
 const LoginPage = () => {
+	const router = useRouter();
+
 	const form = useForm<z.infer<typeof loginSchema>>({
 		resolver: zodResolver(loginSchema),
 		defaultValues: {
@@ -33,7 +36,7 @@ const LoginPage = () => {
 	});
 
 	const handleLogin = (data: z.infer<typeof loginSchema>) => {
-		console.log(data);
+		router.push('/');
 	};
 
 	return (

@@ -16,6 +16,7 @@ import {
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 import * as z from 'zod';
 
 const registerSchema = z.object({
@@ -25,6 +26,8 @@ const registerSchema = z.object({
 });
 
 const RegisterPage = () => {
+	const router = useRouter();
+
 	const form = useForm<z.infer<typeof registerSchema>>({
 		resolver: zodResolver(registerSchema),
 		defaultValues: {
@@ -35,7 +38,7 @@ const RegisterPage = () => {
 	});
 
 	const handleRegister = (data: z.infer<typeof registerSchema>) => {
-		console.log(data);
+		router.push('/');
 	};
 
 	return (
