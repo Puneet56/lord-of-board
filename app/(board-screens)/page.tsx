@@ -1,7 +1,7 @@
 'use client';
 
 import { LISTDATA } from '@/data/data';
-import { List, Task } from '@/types';
+import { List, Project } from '@/types';
 import {
 	DndContext,
 	DragEndEvent,
@@ -12,14 +12,14 @@ import {
 } from '@dnd-kit/core';
 import { arrayMove } from '@dnd-kit/sortable';
 import { useState } from 'react';
-import { TaskItem } from './_components/task-item';
-import { TaskList } from './_components/task-list';
+import { ProjectItem } from './_components/project-item';
+import { ProjectList } from './_components/project-list';
 
 const DashboardPage = () => {
 	const [listData, setListData] = useState<List[]>(LISTDATA);
-	const [draggingTask, setDraggingTask] = useState<Task | null>(null);
+	const [draggingProject, setDraggingProject] = useState<Project | null>(null);
 
-	const handleTaskDragEnd = ({ active, over }: DragEndEvent) => {
+	const handleProjectDragEnd = ({ active, over }: DragEndEvent) => {
 		if (active.id === over?.id) return;
 
 		const activeListIndex = listData.findIndex(
@@ -44,16 +44,16 @@ const DashboardPage = () => {
 			setListData(prev => {
 				const newList = [...prev];
 
-				const activeTaskIndex = newList[activeListIndex].tasks.findIndex(
-					task => task.title === active.id
+				const activeProjectIndex = newList[activeListIndex].projects.findIndex(
+					project => project.title === active.id
 				);
 
-				if (activeTaskIndex === -1) return newList;
+				if (activeProjectIndex === -1) return newList;
 
-				const task = newList[activeListIndex].tasks[activeTaskIndex];
+				const project = newList[activeListIndex].projects[activeProjectIndex];
 
-				newList[activeListIndex].tasks.splice(activeTaskIndex, 1);
-				newList[overListIndex].tasks.push(task);
+				newList[activeListIndex].projects.splice(activeProjectIndex, 1);
+				newList[overListIndex].projects.push(project);
 
 				return newList;
 			});
@@ -63,33 +63,33 @@ const DashboardPage = () => {
 
 		// drop to same list
 		setListData(prev => {
-			const activeTaskIndex = prev[activeListIndex].tasks.findIndex(
-				task => task.title === active.id
+			const activeProjectIndex = prev[activeListIndex].projects.findIndex(
+				project => project.title === active.id
 			);
 
-			const overTaskIndex = prev[activeListIndex].tasks.findIndex(
-				task => task.title === over?.id
+			const overProjectIndex = prev[activeListIndex].projects.findIndex(
+				project => project.title === over?.id
 			);
 
-			prev[activeListIndex].tasks = arrayMove(
-				prev[activeListIndex].tasks!,
-				activeTaskIndex,
-				overTaskIndex
+			prev[activeListIndex].projects = arrayMove(
+				prev[activeListIndex].projects!,
+				activeProjectIndex,
+				overProjectIndex
 			);
 
 			return prev;
 		});
 	};
 
-	const handleTaskDragStart = ({ active }: DragEndEvent) => {
+	const handleProjectDragStart = ({ active }: DragEndEvent) => {
 		const containerId = active.data.current?.sortable?.containerId;
 
 		if (!containerId) return;
 
-		setDraggingTask(
+		setDraggingProject(
 			listData
 				.find(list => list.title === containerId)
-				?.tasks?.find(task => task.title === active.id) || null
+				?.projects?.find(project => project.title === active.id) || null
 		);
 	};
 
@@ -104,17 +104,17 @@ const DashboardPage = () => {
 	return (
 		<DndContext
 			id="board"
-			onDragEnd={handleTaskDragEnd}
-			onDragStart={handleTaskDragStart}
+			onDragEnd={handleProjectDragEnd}
+			onDragStart={handleProjectDragStart}
 			sensors={sensors}
 		>
 			<div className="flex transform gap-8 overflow-auto px-16 py-4 transition-all">
 				{listData.map(list => (
-					<TaskList key={list.title} list={list} />
+					<ProjectList key={list.title} list={list} />
 				))}
 			</div>
 			<DragOverlay>
-				{draggingTask ? <TaskItem task={draggingTask} /> : null}
+				{draggingProject ? <ProjectItem project={draggingProject} /> : null}
 			</DragOverlay>
 		</DndContext>
 	);

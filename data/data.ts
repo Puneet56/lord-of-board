@@ -28,62 +28,62 @@ export const CATEGORIES = [
 export const LISTDATA = [
 	{
 		title: 'Backlog',
-		tasks: [
+		projects: [
 			{
-				title: 'Task 1',
+				title: 'Project 1',
 				description:
 					'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati  natus autem vel quam sint, a aspernatur corporis itaque sunt!',
 				category: ['Engineering', 'Design'],
 			},
 			{
-				title: 'Task 2',
-				description: 'Description for Task 2.',
+				title: 'Project 2',
+				description: 'Description for Project 2.',
 				category: ['Development', 'Testing'],
 			},
 			{
-				title: 'Task 3',
-				description: 'Description for Task 3.',
+				title: 'Project 3',
+				description: 'Description for Project 3.',
 				category: ['Design', 'Documentation'],
 			},
 		],
 	},
 	{
 		title: 'Ready',
-		tasks: [
+		projects: [
 			{
-				title: 'Task 7',
-				description: 'Description for Task 7.',
+				title: 'Project 7',
+				description: 'Description for Project 7.',
 				category: ['Testing', 'Support'],
 			},
 			{
-				title: 'Task 11',
-				description: 'Description for Task 11.',
+				title: 'Project 11',
+				description: 'Description for Project 11.',
 				category: ['Engineering', 'Documentation'],
 			},
 			{
-				title: 'Task 12',
-				description: 'Description for Task 12.',
+				title: 'Project 12',
+				description: 'Description for Project 12.',
 				category: ['Development', 'Support'],
 			},
 		],
 	},
 	{
 		title: 'In Progress',
-		tasks: [
+		projects: [
 			{
-				title: 'Task 8',
-				description: 'Description for Task 8.',
+				title: 'Project 8',
+				description: 'Description for Project 8.',
 				category: ['Engineering', 'Design'],
 			},
 			{
-				title: 'Task 13',
-				description: 'Description for Task 13.',
+				title: 'Project 13',
+				description: 'Description for Project 13.',
 				category: ['Development', 'Testing'],
 			},
 		],
 	},
 	{
 		title: 'Done',
-		tasks: [],
+		projects: [],
 	},
 ];

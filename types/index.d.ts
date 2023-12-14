@@ -1,4 +1,4 @@
-export interface Task {
+export interface Project {
 	title: string;
 	description?: string;
 	category?: string[];
@@ -6,5 +6,5 @@ export interface Task {
 
 export interface List {
 	title: string;
-	tasks: Task[];
+	projects: Project[];
 }
