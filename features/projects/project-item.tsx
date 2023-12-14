@@ -1,7 +1,13 @@
 'use client';
 
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+	Card,
+	CardContent,
+	CardFooter,
+	CardHeader,
+	CardTitle,
+} from '@/components/ui/card';
 import { CATEGORIES } from '@/data/data';
 import { cn } from '@/lib/utils';
 import { Project } from '@/types';
@@ -10,7 +16,13 @@ import { CSS } from '@dnd-kit/utilities';
 import Link from 'next/link';
 import React from 'react';
 
-export const ProjectItem = ({ project }: { project: Project }) => {
+export const ProjectItem = ({
+	project,
+	showTasks = false,
+}: {
+	project: Project;
+	showTasks?: boolean;
+}) => {
 	const {
 		attributes,
 		listeners,
@@ -59,6 +71,18 @@ export const ProjectItem = ({ project }: { project: Project }) => {
 						))}
 					</div>
 					{project.description || 'No description provided'}
+
+					{showTasks && (
+						<CardFooter className="mt-6 flex flex-wrap gap-2 p-0">
+							{project.tasks?.length === 0 ? <Badge>No tasks</Badge> : null}
+
+							{project.tasks?.length === 1 ? <Badge>1 task</Badge> : null}
+
+							{project.tasks && project.tasks?.length > 1 ? (
+								<Badge>{project.tasks.length} tasks</Badge>
+							) : null}
+						</CardFooter>
+					)}
 				</CardContent>
 			</Link>
 		</Card>
