@@ -25,12 +25,13 @@ const AuthProvider = ({ children }: { children: any }) => {
 		}
 	}, [pathname]);
 
-	if (loading)
+	if (loading) {
 		return (
 			<div className="flex h-screen items-center justify-center">
 				<h1 className="animate-pulse text-3xl font-bold">Lord of the boards</h1>
 			</div>
 		);
+	}
 
 	return <AuthContext.Provider value={{}}>{children}</AuthContext.Provider>;
 };
