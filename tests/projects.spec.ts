@@ -18,7 +18,7 @@ test('All projects screen', async ({ page }) => {
 	expect(page.getByRole('heading', { name: 'Projects' })).toBeTruthy();
 });
 
-test('Project details screen', async ({ page }) => {
+test('Project details screen and task popup', async ({ page }) => {
 	await page.goto('http://localhost:3000/login');
 	await page.fill('input[name=email]', 'test@test.com');
 	await page.fill('input[name=password]', 'password');

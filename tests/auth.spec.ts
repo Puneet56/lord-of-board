@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-test('Login and validation', async ({ page }) => {
+test('Login and form validation', async ({ page }) => {
 	await page.goto('http://localhost:3000/login');
 	await expect(page).toHaveTitle(/Load of the boards/);
 
@@ -21,7 +21,7 @@ test('Login and validation', async ({ page }) => {
 	await expect(page).toHaveURL('http://localhost:3000');
 });
 
-test('Register and validation', async ({ page }) => {
+test('Register and form validation', async ({ page }) => {
 	await page.goto('http://localhost:3000/register');
 	await expect(page).toHaveTitle(/Load of the boards/);
 
