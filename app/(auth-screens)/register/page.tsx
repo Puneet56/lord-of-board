@@ -38,6 +38,7 @@ const RegisterPage = () => {
 	});
 
 	const handleRegister = (data: z.infer<typeof registerSchema>) => {
+		localStorage.setItem('lb-token', 'token');
 		router.push('/');
 	};
 

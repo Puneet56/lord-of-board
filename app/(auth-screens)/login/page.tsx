@@ -36,6 +36,7 @@ const LoginPage = () => {
 	});
 
 	const handleLogin = (data: z.infer<typeof loginSchema>) => {
+		localStorage.setItem('lb-token', 'token');
 		router.push('/');
 	};
 

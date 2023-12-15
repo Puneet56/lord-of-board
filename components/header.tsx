@@ -1,7 +1,6 @@
 import { Input } from '@/components/ui/input';
-import Link from 'next/link';
+import LogoutButton from './logout-button';
 import NaviationTabs from './navigation-tabs';
-import { Button } from './ui/button';
 
 const Header = () => {
 	return (
@@ -18,11 +17,7 @@ const Header = () => {
 
 					<div className="flex items-center gap-4">
 						<Input placeholder="Search tasks" className="rounded-full" />
-						<Link href="/login">
-							<Button variant="destructive" className="rounded-xl">
-								Logout
-							</Button>
-						</Link>
+						<LogoutButton />
 					</div>
 				</div>
 			</div>
